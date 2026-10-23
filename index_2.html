@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recarga Juvenil Radio | En Vivo 24/7</title>
+<meta name="description" content="Recarga Juvenil Radio: música las 24 horas, programas en vivo y videos. Escúchanos desde cualquier lugar.">
+<meta property="og:title" content="Recarga Juvenil Radio | En Vivo 24/7">
+<meta property="og:description" content="Música las 24 horas, programas en vivo y videos.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14; --bg2:#11111f; --surface:#17172b; --line:#2a2a45;
+  --text:#f4f4fb; --muted:#a3a3c2;
+  --lime:#c6ff00; --pink:#ff2e93; --cyan:#22d3ee;
+  --radius:22px; --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;overflow-x:hidden;padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:1.05;letter-spacing:-.02em}
+section{padding:72px 0}
+.kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
+.h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:12px}
+.lead{color:var(--muted);max-width:560px}
+
+/* Header */
+header{position:sticky;top:0;z-index:40;background:rgba(11,11,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.15rem}
+.brand-mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--lime),var(--cyan));display:grid;place-items:center;color:#0b0b14}
+.brand small{display:block;font-family:"DM Sans",system-ui,sans-serif;font-weight:500;font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;line-height:1}
+.menu{display:flex;gap:26px;font-weight:500;color:var(--muted);font-size:.95rem}
+.menu a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:700 .95rem "DM Sans",system-ui,sans-serif;padding:12px 20px;border-radius:999px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-lime{background:var(--lime);color:#0b0b14;box-shadow:0 8px 30px -8px rgba(198,255,0,.55)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-wa{background:#25d366;color:#06240f}
+@media (max-width:760px){.menu{display:none}.nav .btn{padding:10px 14px;font-size:.85rem}}
+
+/* Hero */
+.hero{position:relative;padding:56px 0 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto;height:620px;background:radial-gradient(closest-side,rgba(255,46,147,.28),transparent 70%) 15% 30%/60% 100% no-repeat,radial-gradient(closest-side,rgba(198,255,0,.18),transparent 70%) 85% 10%/55% 100% no-repeat;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+.hero h1{font-size:clamp(2.6rem,8vw,5.4rem);margin:10px 0 18px}
+.hero h1 .hl{color:var(--lime)}
+.hero h1 .hl2{background:linear-gradient(90deg,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,46,147,.12);border:1px solid rgba(255,46,147,.4);color:#ffd1e6;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 0 rgba(255,46,147,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,46,147,0)}100%{box-shadow:0 0 0 0 rgba(255,46,147,0)}}
+
+/* Player card */
+.player{position:relative;background:linear-gradient(160deg,#1b1b33,#121224);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.player-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.status{font-size:.8rem;color:var(--muted);font-weight:500}
+.status b{color:var(--lime)}
+.art{position:relative;aspect-ratio:1/1;border-radius:22px;background:radial-gradient(circle at 30% 25%,rgba(198,255,0,.35),transparent 45%),radial-gradient(circle at 75% 80%,rgba(255,46,147,.45),transparent 50%),#0e0e1c;display:grid;place-items:center;overflow:hidden;margin-bottom:22px}
+.art-logo{text-align:center}
+.art-logo .big{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(2.2rem,7vw,3.4rem);line-height:.9}
+.art-logo .big span{color:var(--lime)}
+.art-logo .fm{margin-top:8px;font-weight:700;letter-spacing:.35em;font-size:.8rem;color:var(--muted)}
+.battery{position:absolute;top:18px;right:18px;width:54px;height:26px;border:2px solid rgba(255,255,255,.6);border-radius:6px;padding:3px}
+.battery::after{content:"";position:absolute;right:-6px;top:7px;width:4px;height:8px;background:rgba(255,255,255,.6);border-radius:0 2px 2px 0}
+.battery i{display:block;height:100%;width:30%;background:var(--lime);border-radius:3px;transition:width .6s}
+.playing .battery i{animation:charge 2.4s ease-in-out infinite}
+@keyframes charge{0%{width:15%}100%{width:100%}}
+.eq{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:5px;align-items:flex-end;height:40px}
+.eq span{width:6px;height:6px;border-radius:3px;background:var(--lime);opacity:.85}
+.playing .eq span{animation:eq 1s ease-in-out infinite}
+.eq span:nth-child(2n){background:var(--pink)}
+.eq span:nth-child(3n){background:var(--cyan)}
+.playing .eq span:nth-child(1){animation-delay:-.2s}.playing .eq span:nth-child(2){animation-delay:-.5s}.playing .eq span:nth-child(3){animation-delay:-.1s}.playing .eq span:nth-child(4){animation-delay:-.7s}.playing .eq span:nth-child(5){animation-delay:-.3s}.playing .eq span:nth-child(6){animation-delay:-.6s}.playing .eq span:nth-child(7){animation-delay:-.4s}.playing .eq span:nth-child(8){animation-delay:-.8s}.playing .eq span:nth-child(9){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:6px}50%{height:40px}}
+.now{display:flex;align-items:center;gap:16px}
+.now-text{flex:1;min-width:0}
+.now-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.now-title{font-weight:700;font-size:1.08rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.play{flex:none;width:70px;height:70px;border-radius:50%;border:0;cursor:pointer;background:var(--lime);color:#0b0b14;display:grid;place-items:center;box-shadow:0 12px 34px -8px rgba(198,255,0,.7);transition:transform .15s}
+.play:hover{transform:scale(1.06)}
+.play svg{width:28px;height:28px}
+.play .i-pause,.playing .play .i-play,.loading .play .i-play{display:none}
+.playing .play .i-pause{display:block}
+.spinner{display:none;width:26px;height:26px;border:3px solid rgba(11,11,20,.25);border-top-color:#0b0b14;border-radius:50%;animation:spin .8s linear infinite}
+.loading .spinner{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vol{display:flex;align-items:center;gap:12px;margin-top:20px;color:var(--muted)}
+.vol button{background:none;border:0;color:inherit;cursor:pointer;display:grid}
+input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:linear-gradient(90deg,var(--lime) var(--v,80%),var(--line) var(--v,80%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:#fff;cursor:pointer}
+.msg{margin-top:14px;font-size:.85rem;color:#ffd1e6;display:none}
+.msg.show{display:block}
+
+/* Programación */
+.sched{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:34px}
+.slot{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
+.slot .time{font-weight:700;color:var(--lime);font-size:.9rem}
+.slot h3{font-size:1.35rem;margin:8px 0 6px}
+.slot p{color:var(--muted);font-size:.92rem}
+.slot.on{border-color:var(--pink);background:linear-gradient(160deg,rgba(255,46,147,.16),var(--surface) 60%)}
+.slot.on::after{content:"AL AIRE";position:absolute;top:18px;right:18px;font-size:.68rem;font-weight:700;letter-spacing:.12em;background:var(--pink);color:#fff;padding:4px 9px;border-radius:999px}
+.days{display:inline-block;margin-top:12px;font-size:.75rem;color:var(--muted);border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+
+/* Videos */
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media (max-width:900px){.videos{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.videos{grid-template-columns:1fr}}
+.video{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;border:1px solid var(--line);cursor:pointer}
+.video img{width:100%;height:100%;object-fit:cover;transition:transform .4s,opacity .3s;opacity:.85}
+.video:hover img{transform:scale(1.05);opacity:1}
+.video .vplay{position:absolute;inset:0;display:grid;place-items:center}
+.video .vplay span{width:62px;height:62px;border-radius:50%;background:rgba(11,11,20,.7);border:2px solid var(--lime);display:grid;place-items:center;color:var(--lime);backdrop-filter:blur(4px)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.note{margin-top:14px;font-size:.85rem;color:var(--muted)}
+
+/* Sé parte */
+.join{position:relative;border-radius:32px;padding:clamp(28px,6vw,64px);background:linear-gradient(120deg,#1d1236,#101a2c);border:1px solid var(--line);overflow:hidden}
+.join::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(closest-side,rgba(198,255,0,.25),transparent);pointer-events:none}
+.join-grid{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+@media (max-width:800px){.join-grid{grid-template-columns:1fr}}
+.join ul{list-style:none;display:grid;gap:12px}
+.join li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--line);padding:14px 16px;border-radius:16px}
+.join li b{color:var(--lime)}
+.join .hero-cta{margin-top:24px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.9rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.social{display:flex;gap:10px}
+.social a{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;color:var(--text)}
+.social a:hover{border-color:var(--lime);color:var(--lime)}
+
+/* Mini player */
+.mini{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(17,17,31,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.mini.show{transform:none}
+.mini .wrap{display:flex;align-items:center;gap:14px;height:72px}
+.mini .play{width:48px;height:48px;box-shadow:none}
+.mini .play svg{width:20px;height:20px}
+.mini .spinner{width:20px;height:20px}
+.mini .now-text{flex:1}
+.mini .pill{padding:5px 10px;font-size:.68rem}
+@media (max-width:480px){.mini .pill{display:none}}
+
+/* WhatsApp flotante */
+.wa-float{position:fixed;right:16px;bottom:96px;z-index:45;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);color:#fff}
+.wa-float svg{width:28px;height:28px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="brand" aria-label="Recarga Juvenil Radio">
+      <span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
+      <span>Recarga Juvenil<small>Radio online</small></span>
+    </a>
+    <nav class="menu">
+      <a href="#inicio">En vivo</a>
+      <a href="#programacion">Programación</a>
+      <a href="#videos">Videos</a>
+      <a href="#parte">Sé parte</a>
+    </nav>
+    <button class="btn btn-lime js-toggle" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <span class="js-btn-label">Escuchar</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot"></span> Ya estamos en la web</span>
+        <h1>Tu energía,<br><span class="hl">recargada</span> <span class="hl2">24/7</span></h1>
+        <p class="lead">Música las 24 horas, programas en vivo y videos para la juventud. Dale play y llévanos contigo a donde vayas.</p>
+        <div class="hero-cta">
+          <button class="btn btn-lime js-toggle" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span class="js-btn-label">Escuchar en vivo</span>
+          </button>
+          <a class="btn btn-ghost" href="#programacion">Ver programación</a>
+        </div>
+      </div>
+
+      <div class="player" id="player">
+        <div class="player-top">
+          <span class="pill"><span class="dot"></span> En vivo</span>
+          <span class="status js-status">Listo para sonar</span>
+        </div>
+        <div class="art">
+          <div class="battery"><i></i></div>
+          <div class="art-logo">
+            <div class="big">RECARGA<br><span>JUVENIL</span></div>
+            <div class="fm">RADIO ONLINE</div>
+          </div>
+          <div class="eq"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="now">
+          <div class="now-text">
+            <div class="now-label">Ahora suena</div>
+            <div class="now-title js-title">Recarga Juvenil Radio</div>
+          </div>
+          <button class="play js-toggle" type="button" aria-label="Reproducir o pausar">
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            <span class="spinner"></span>
+          </button>
+        </div>
+        <div class="vol">
+          <button type="button" class="js-mute" aria-label="Silenciar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+          </button>
+          <input type="range" min="0" max="100" value="80" class="js-vol" aria-label="Volumen">
+        </div>
+        <p class="msg js-msg"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="programacion" style="background:var(--bg2)">
+    <div class="wrap">
+      <span class="kicker">Programación</span>
+      <h2 class="h2">Lo que suena cada día</h2>
+      <p class="lead">El programa marcado como <b style="color:var(--pink)">AL AIRE</b> es el que está sonando ahora (hora de Ecuador).</p>
+      <div class="sched js-sched"></div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <span class="kicker">Videos</span>
+      <h2 class="h2">Mira lo último del canal</h2>
+      <p class="lead">Al abrir un video la radio se pausa sola, y puedes volver a darle play cuando termine.</p>
+      <div class="videos js-videos"></div>
+    </div>
+  </section>
+
+  <section id="parte" style="padding-top:24px">
+    <div class="wrap">
+      <div class="join">
+        <div class="join-grid">
+          <div>
+            <span class="kicker">Te gustaría ser parte</span>
+            <h2 class="h2">Únete a Recarga Juvenil</h2>
+            <p class="lead">¿Quieres tener tu programa, mandar saludos, pedir una canción o anunciar tu negocio? Escríbenos y te respondemos.</p>
+            <div class="hero-cta">
+              <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+                Escríbenos al WhatsApp
+              </a>
+              <a class="btn btn-ghost js-fb" href="#" target="_blank" rel="noopener">Síguenos en Facebook</a>
+            </div>
+          </div>
+          <ul>
+            <li><b>01</b><span>Pide tu canción favorita y manda saludos en vivo.</span></li>
+            <li><b>02</b><span>Propón tu propio programa o segmento.</span></li>
+            <li><b>03</b><span>Anuncia tu negocio con nosotros.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span class="js-year"></span> Recarga Juvenil Radio. Música 24/7.</div>
+    <div class="social">
+      <a class="js-fb" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.2V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+      <a class="js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="mini js-mini" aria-hidden="true">
+  <div class="wrap">
+    <button class="play js-toggle" type="button" aria-label="Reproducir o pausar">
+      <svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      <span class="spinner"></span>
+    </button>
+    <div class="now-text">
+      <div class="now-label">Recarga Juvenil · Ahora suena</div>
+      <div class="now-title js-title">Recarga Juvenil Radio</div>
+    </div>
+    <span class="pill"><span class="dot"></span> En vivo</span>
+  </div>
+</div>
+
+<a class="wa-float js-wa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN: solo edita esta parte
+   ========================================================= */
+const CONFIG = {
+  nombre: "Recarga Juvenil Radio",
+
+  // Enlace del stream de Zeno.fm (Dashboard > tu radio > Stream URL).
+  // Ejemplo: "https://stream.zeno.fm/abcd1234efgh"
+  streamUrl: "https://stream.zeno.fm/u3q6k4097jauv",
+
+  // WhatsApp con código de país, sin + ni espacios (0996050983 -> 593996050983)
+  whatsapp: "593996050983",
+  mensajeWhatsapp: "Hola Recarga Juvenil, quiero ser parte de la radio",
+
+  facebook: "https://www.facebook.com/RecargaJuvenil09",
+
+  // IDs de YouTube (lo que va después de watch?v= o youtu.be/)
+  videos: ["wFJMSzI6Eh8", "qVy9v09bus8", "Bx2Xn7lg_XU"],
+
+  // Programación. Horas en formato 24h, hora de Ecuador.
+  // dias: 0=domingo, 1=lunes ... 6=sábado
+  programacion: [
+    { inicio: "00:00", fin: "06:00", nombre: "Recarga Nocturna", desc: "Música sin parar para la madrugada.", dias: [0,1,2,3,4,5,6] },
+    { inicio: "06:00", fin: "10:00", nombre: "Despierta Recargado", desc: "Arranca el día con energía y saludos.", dias: [1,2,3,4,5] },
+    { inicio: "10:00", fin: "14:00", nombre: "Mix Juvenil", desc: "Los éxitos del momento.", dias: [1,2,3,4,5] },
+    { inicio: "14:00", fin: "18:00", nombre: "Tarde de Recarga", desc: "Pedidos y dedicatorias en vivo.", dias: [1,2,3,4,5] },
+    { inicio: "18:00", fin: "24:00", nombre: "Noche Recargada", desc: "Lo mejor para cerrar el día.", dias: [1,2,3,4,5] },
+    { inicio: "06:00", fin: "24:00", nombre: "Fin de Semana Recargado", desc: "Música 24/7 y especiales.", dias: [0,6] }
+  ]
+};
+/* ========================================================= */
+
+(function(){
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const body = document.body;
+
+  // Enlaces
+  const waLink = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.mensajeWhatsapp);
+  $$(".js-wa").forEach(a => a.href = waLink);
+  $$(".js-fb").forEach(a => a.href = CONFIG.facebook);
+  $(".js-year").textContent = new Date().getFullYear();
+
+  // ===== Reproductor =====
+  const audio = new Audio();
+  audio.preload = "none";
+  let wantPlay = false, retries = 0, retryTimer = null;
+  const status = $(".js-status"), msg = $(".js-msg"), vol = $(".js-vol");
+
+  function setState(s){
+    body.classList.toggle("playing", s === "playing");
+    body.classList.toggle("loading", s === "loading");
+    $$(".js-btn-label").forEach((el,i) => el.textContent = s === "playing" ? "Pausar" : (i === 0 ? "Escuchar" : "Escuchar en vivo"));
+    status.innerHTML = s === "playing" ? "<b>●</b> Sonando en vivo" : s === "loading" ? "Conectando..." : "Listo para sonar";
+  }
+  function showMsg(t){ msg.textContent = t; msg.classList.toggle("show", !!t); }
+
+  function start(){
+    if(!CONFIG.streamUrl){ showMsg("La transmisión estará disponible muy pronto."); return; }
+    wantPlay = true; showMsg(""); setState("loading");
+    // Se recarga el stream para entrar siempre en el punto en vivo
+    audio.src = CONFIG.streamUrl + (CONFIG.streamUrl.includes("?") ? "&" : "?") + "t=" + Date.now();
+    audio.play().catch(() => { setState("idle"); wantPlay = false; });
+  }
+  function stop(){
+    wantPlay = false; clearTimeout(retryTimer);
+    audio.pause(); audio.removeAttribute("src"); audio.load();
+    setState("idle");
+  }
+  $$(".js-toggle").forEach(b => b.addEventListener("click", () => wantPlay ? stop() : start()));
+
+  audio.addEventListener("playing", () => { retries = 0; setState("playing"); });
+  audio.addEventListener("waiting", () => wantPlay && setState("loading"));
+  function reconnect(){
+    if(!wantPlay) return;
+    clearTimeout(retryTimer);
+    if(retries >= 8){ setState("idle"); wantPlay = false; showMsg("No pudimos conectar con la radio. Intenta de nuevo en unos minutos."); return; }
+    retries++; setState("loading");
+    retryTimer = setTimeout(start, Math.min(1500 * retries, 10000));
+  }
+  audio.addEventListener("error", reconnect);
+  audio.addEventListener("stalled", reconnect);
+  audio.addEventListener("ended", reconnect);
+
+  function applyVol(){ audio.volume = vol.value / 100; vol.style.setProperty("--v", vol.value + "%"); }
+  vol.addEventListener("input", applyVol); applyVol();
+  $(".js-mute").addEventListener("click", () => { audio.muted = !audio.muted; $(".js-mute").style.opacity = audio.muted ? .4 : 1; });
+
+  // ===== Canción actual (metadatos de Zeno.fm) =====
+  function setTitle(t){
+    t = (t || "").trim() || CONFIG.nombre;
+    $$(".js-title").forEach(el => el.textContent = t);
+    if("mediaSession" in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({ title: t, artist: CONFIG.nombre });
+    }
+  }
+  setTitle("");
+  try{
+    const m = CONFIG.streamUrl.match(/zeno\.fm\/(?:radio\/)?([^/?#]+)/);
+    if(m && "EventSource" in window){
+      const es = new EventSource("https://api.zeno.fm/mounts/metadata/subscribe/" + m[1]);
+      es.onmessage = e => { try{ const d = JSON.parse(e.data); if(d.streamTitle) setTitle(d.streamTitle); }catch(_){} };
+    }
+  }catch(_){}
+
+  if("mediaSession" in navigator){
+    navigator.mediaSession.setActionHandler("play", start);
+    navigator.mediaSession.setActionHandler("pause", stop);
+  }
+
+  // ===== Mini reproductor al hacer scroll =====
+  const mini = $(".js-mini");
+  new IntersectionObserver(([e]) => {
+    const show = !e.isIntersecting;
+    mini.classList.toggle("show", show); mini.setAttribute("aria-hidden", !show);
+  }, { threshold: 0 }).observe($("#player"));
+
+  // ===== Programación =====
+  const toMin = h => { const [a,b] = h.split(":").map(Number); return a*60 + b; };
+  function renderSched(){
+    // Hora de Ecuador (UTC-5) sin importar dónde esté el oyente
+    const ec = new Date(Date.now() + (new Date().getTimezoneOffset() - 300) * 60000);
+    const day = ec.getDay(), now = ec.getHours()*60 + ec.getMinutes();
+    const names = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+    const daysTxt = d => d.length === 7 ? "Todos los días" : d.join() === "1,2,3,4,5" ? "Lunes a viernes" : d.join() === "0,6" ? "Sábado y domingo" : d.map(x => names[x]).join(", ");
+    $(".js-sched").innerHTML = CONFIG.programacion.map(p => {
+      const on = p.dias.includes(day) && now >= toMin(p.inicio) && now < toMin(p.fin);
+      return `<article class="slot${on ? " on" : ""}">
+        <div class="time">${p.inicio} a ${p.fin === "24:00" ? "00:00" : p.fin}</div>
+        <h3>${p.nombre}</h3><p>${p.desc}</p>
+        <span class="days">${daysTxt(p.dias)}</span></article>`;
+    }).join("");
+  }
+  renderSched(); setInterval(renderSched, 60000);
+
+  // ===== Videos (carga ligera: el reproductor de YouTube se carga al hacer clic) =====
+  $(".js-videos").innerHTML = CONFIG.videos.map(id => `
+    <div class="video" data-id="${id}" role="button" tabindex="0" aria-label="Reproducir video">
+      <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="Video de Recarga Juvenil" loading="lazy">
+      <div class="vplay"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>
+    </div>`).join("");
+  $$(".video").forEach(v => {
+    const open = () => {
+      if(v.querySelector("iframe")) return;
+      if(wantPlay) stop(); // pausa la radio para ver el video
+      v.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.dataset.id}?autoplay=1&rel=0" title="Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    };
+    v.addEventListener("click", open);
+    v.addEventListener("keydown", e => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), open()));
+  });
+})();
+</script>
+</body>
+</html>
