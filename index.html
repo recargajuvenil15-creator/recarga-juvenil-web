@@ -2,6 +2,29 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<!--
+  ###############################################################
+  ###                                                         ###
+  ###   👉 LIVE DE FACEBOOK: PEGA EL ENLACE AQUÍ ABAJO 👇      ###
+  ###                                                         ###
+  ###############################################################
+
+  CÓMO USARLO:
+  1. Empieza tu live en Facebook.
+  2. En Facebook, abre el video del live > botón "Compartir" > "Copiar enlace".
+  3. Pega el enlace ENTRE LAS COMILLAS de FACEBOOK_LIVE (línea de abajo).
+     Ejemplo:  const FACEBOOK_LIVE = "https://www.facebook.com/RecargaJuvenil09/videos/1234567890";
+  4. Si transmites con el celular PARADO (vertical), cambia false por true en FACEBOOK_LIVE_VERTICAL.
+  5. Guarda (Commit changes). En 1 minuto aparece el live en la página.
+
+  CUANDO TERMINES EL LIVE: borra el enlace y deja solo las comillas vacías ""
+  para que la página vuelva a mostrar solo la radio.
+-->
+<script>
+  const FACEBOOK_LIVE = "";            // 👈 PEGA AQUÍ EL ENLACE DEL LIVE (entre las comillas)
+  const FACEBOOK_LIVE_VERTICAL = false; // 👈 true = celular vertical, false = horizontal
+</script>
+<!-- ################# FIN DE LA PARTE DEL LIVE ################# -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Recarga Juvenil Radio | En Vivo 24/7</title>
 <meta name="description" content="Recarga Juvenil Radio: música las 24 horas, programas en vivo y videos. Escúchanos desde cualquier lugar.">
@@ -154,6 +177,21 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
 .wa-float{position:fixed;right:16px;bottom:96px;z-index:45;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);color:#fff}
 .wa-float svg{width:28px;height:28px}
 
+/* Live de Facebook */
+.live{display:none;padding:40px 0 8px}
+.live.on{display:block}
+.live-box{background:linear-gradient(160deg,rgba(255,46,147,.18),var(--surface) 55%);border:1px solid var(--pink);border-radius:30px;padding:clamp(18px,4vw,32px);box-shadow:0 30px 70px -30px rgba(255,46,147,.5)}
+.live-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.live-head h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}
+.live-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;margin:0 auto}
+.live-frame.vertical{aspect-ratio:9/16;max-width:420px}
+.live-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.live-cover{position:absolute;inset:0;display:grid;place-items:center;text-align:center;cursor:pointer;background:radial-gradient(circle at 30% 30%,rgba(255,46,147,.4),transparent 55%),radial-gradient(circle at 75% 75%,rgba(198,255,0,.25),transparent 55%),#0e0e1c;padding:20px}
+.live-cover .btn{font-size:1.05rem;padding:16px 26px;background:var(--pink);color:#fff;box-shadow:0 12px 34px -8px rgba(255,46,147,.7)}
+.live-cover p{color:var(--muted);margin-top:12px;font-size:.9rem}
+.menu .live-link{display:none;color:var(--pink);font-weight:700}
+.has-live .menu .live-link{display:inline}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -166,6 +204,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
       <span>Recarga Juvenil<small>Radio online</small></span>
     </a>
     <nav class="menu">
+      <a href="#live" class="live-link">● Live Facebook</a>
       <a href="#inicio">En vivo</a>
       <a href="#programacion">Programación</a>
       <a href="#videos">Videos</a>
@@ -179,6 +218,25 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
 </header>
 
 <main>
+  <section class="live js-live" id="live" aria-label="Live de Facebook">
+    <div class="wrap">
+      <div class="live-box">
+        <div class="live-head">
+          <h2>Estamos en vivo en Facebook</h2>
+          <span class="pill"><span class="dot"></span> Live ahora</span>
+        </div>
+        <div class="live-frame js-live-frame">
+          <div class="live-cover js-live-cover" role="button" tabindex="0">
+            <div>
+              <span class="btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Ver el live</span>
+              <p>Al abrir el live, la radio se pausa para que no se mezcle el audio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="hero" id="inicio">
     <div class="wrap hero-grid">
       <div>
@@ -362,6 +420,7 @@ const CONFIG = {
   function showMsg(t){ msg.textContent = t; msg.classList.toggle("show", !!t); }
 
   function start(){
+    if(window.closeLive) window.closeLive(); // si el live estaba abierto, se cierra para no mezclar audio
     if(!CONFIG.streamUrl){ showMsg("La transmisión estará disponible muy pronto."); return; }
     wantPlay = true; showMsg(""); setState("loading");
     // Se recarga el stream para entrar siempre en el punto en vivo
@@ -445,10 +504,33 @@ const CONFIG = {
       <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="Video de Recarga Juvenil" loading="lazy">
       <div class="vplay"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>
     </div>`).join("");
+  // ===== Live de Facebook (se configura arriba del todo, en FACEBOOK_LIVE) =====
+  const liveUrl = (typeof FACEBOOK_LIVE === "string" ? FACEBOOK_LIVE : "").trim();
+  if(/^https?:\/\/(www\.|m\.|web\.)?(facebook\.com|fb\.watch)\//i.test(liveUrl)){
+    const section = $(".js-live"), frame = $(".js-live-frame"), coverHTML = frame.innerHTML;
+    const vertical = typeof FACEBOOK_LIVE_VERTICAL !== "undefined" && FACEBOOK_LIVE_VERTICAL === true;
+    if(vertical) frame.classList.add("vertical");
+    section.classList.add("on"); body.classList.add("has-live");
+    const openLive = () => {
+      if(wantPlay) stop();
+      const src = "https://www.facebook.com/plugins/video.php?href=" + encodeURIComponent(liveUrl) + "&show_text=false&autoplay=true&allowfullscreen=true";
+      frame.innerHTML = `<iframe src="${src}" title="Live de Facebook" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen scrolling="no"></iframe>`;
+    };
+    const bindCover = () => {
+      const c = frame.querySelector(".js-live-cover");
+      if(!c) return;
+      c.addEventListener("click", openLive);
+      c.addEventListener("keydown", e => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), openLive()));
+    };
+    window.closeLive = () => { if(frame.querySelector("iframe")){ frame.innerHTML = coverHTML; bindCover(); } };
+    bindCover();
+  }
+
   $$(".video").forEach(v => {
     const open = () => {
       if(v.querySelector("iframe")) return;
       if(wantPlay) stop(); // pausa la radio para ver el video
+      if(window.closeLive) window.closeLive();
       v.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.dataset.id}?autoplay=1&rel=0" title="Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     };
     v.addEventListener("click", open);
