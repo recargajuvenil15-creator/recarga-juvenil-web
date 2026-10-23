@@ -31,6 +31,10 @@
 <meta property="og:title" content="Recarga Juvenil Radio | En Vivo 24/7">
 <meta property="og:description" content="Música las 24 horas, programas en vivo y videos.">
 <meta name="theme-color" content="#0b0b14">
+<meta property="og:image" content="icon512.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -87,6 +91,12 @@ header{position:sticky;top:0;z-index:40;background:rgba(11,11,20,.82);backdrop-f
 .status{font-size:.8rem;color:var(--muted);font-weight:500}
 .status b{color:var(--lime)}
 .art{position:relative;aspect-ratio:1/1;border-radius:22px;background:radial-gradient(circle at 30% 25%,rgba(198,255,0,.35),transparent 45%),radial-gradient(circle at 75% 80%,rgba(255,46,147,.45),transparent 50%),#0e0e1c;display:grid;place-items:center;overflow:hidden;margin-bottom:22px}
+.art-img{width:88%;height:auto;margin-top:-6%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55));transition:transform .4s}
+.playing .art-img{animation:beat 1.1s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.brand-logo{height:50px;width:auto}
+.brand-text{font-size:.95rem;line-height:1.1}
+@media (max-width:420px){.brand-text{display:none}}
 .art-logo{text-align:center}
 .art-logo .big{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(2.2rem,7vw,3.4rem);line-height:.9}
 .art-logo .big span{color:var(--lime)}
@@ -200,8 +210,8 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
 <header>
   <div class="wrap nav">
     <a href="#inicio" class="brand" aria-label="Recarga Juvenil Radio">
-      <span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
-      <span>Recarga Juvenil<small>Radio online</small></span>
+      <img src="logo.png" alt="Recarga Juvenil" class="brand-logo" width="900" height="621">
+      <span class="brand-text">Radio online<small>24/7</small></span>
     </a>
     <nav class="menu">
       <a href="#live" class="live-link">● Live Facebook</a>
@@ -258,11 +268,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
           <span class="status js-status">Listo para sonar</span>
         </div>
         <div class="art">
-          <div class="battery"><i></i></div>
-          <div class="art-logo">
-            <div class="big">RECARGA<br><span>JUVENIL</span></div>
-            <div class="fm">RADIO ONLINE</div>
-          </div>
+          <img src="logo.png" alt="Recarga Juvenil Radio" class="art-img" width="900" height="621">
           <div class="eq"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
         <div class="now">
